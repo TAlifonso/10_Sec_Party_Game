@@ -6,12 +6,15 @@ public class TextKillCode : MonoBehaviour
 {
     public GameObject timeDisplay;
 
+    public AudioClip announce;
+
     // Start is called before the first frame update
     void Start()
     {
+
         timeDisplay.gameObject.SetActive(false);
         Time.timeScale = 0;
-        AudioListener.pause = true;   
+        GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Stop();
         StartCoroutine(Unfreeze());
     }
 
@@ -23,7 +26,7 @@ public class TextKillCode : MonoBehaviour
 
             Time.timeScale = 1;
             timeDisplay.gameObject.SetActive(true);
-            AudioListener.pause = false;
+            GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Play();
         }
         if (Time.timeScale == 1)
         {
